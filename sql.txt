@@ -1,0 +1,48 @@
+//Revising the Selection Query I
+select * from city where CountryCode = 'USA' and population > 100000;
+//Revising the Selection Query II
+select name from city where CountryCode = 'USA' and population > 120000;
+//Select All
+select * from city;
+//Select By ID
+select * from city where id = 1661;
+//Japanese cities
+select * from city where CountryCode = 'JPN';
+//Japanese cities names
+select name from city where CountryCode = 'JPN';
+//Weather Obsevation Station 1
+select city, state from station;
+//Weather Obsevation Station 3
+select distinct city from station where id % 2 = 0 order by city asc;
+//Weather Obsevation Station 4
+select count(city) -  count(distinct city) from station;
+//Weather Obsevation Station 5
+(select CITY, length(CITY) as city_len from STATION order by city_len asc, CITY asc limit 1) 
+UNION
+(select CITY, length(city) as city_len from STATION order by city_len desc, CITY asc limit 1);
+//Weather Obsevation Station 6
+select distinct city from station WHERE (CITY LIKE "A%") 
+    OR (CITY LIKE "E%")
+    OR (CITY LIKE "I%")
+    OR (CITY LIKE "O%")
+    OR (CITY LIKE "U%");
+//Weather Obsevation Station 7
+SELECT DISTINCT city FROM station WHERE (CITY LIKE "%A") 
+    OR (CITY LIKE "%E")
+    OR (CITY LIKE "%I")
+    OR (CITY LIKE "%O")
+    OR (CITY LIKE "%U");
+//Weather Obsevation Station 9
+SELECT DISTINCT city from station where (city not like 'a%') 
+and (city not like 'e%') and
+(city not like 'i%') and
+(city not like 'o%') and
+(city not like 'u%');
+//Weather Obsevation Station 11
+SELECT DISTINCT CITY FROM STATION WHERE UPPER(SUBSTR(CITY, LENGTH(CITY), 1)) NOT IN ('A','E','I','O','U') AND LOWER(SUBSTR(CITY, LENGTH(CITY),1)) NOT IN ('a','e','i','o','u');    
+//The Count Function
+select count(id) from city where population > 100000;
+//The SUM Function
+select sum(population) from city where district = 'California';
+//The Average Function
+select avg(population) from city where district = 'California';
